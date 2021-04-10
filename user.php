@@ -1,3 +1,4 @@
+<!-- CRUD Logic -->
 <?php
 class User {
 	public $con;
@@ -29,7 +30,7 @@ class User {
 			$this->id = $data['id'];
 		}
 	}
-
+	//Data Insert
 	public function insert() {
 		$query = "INSERT INTO `user_data`(`id`, `username`, `email`, `password`) VALUES ('null','$this->username','$this->email','$this->password')";
 		if (mysqli_query($this->con, $query)) {
@@ -39,6 +40,7 @@ class User {
 		}
 
 	}
+	// Display data
 	public function show() {
 		$query = "SELECT * FROM `user_data`";
 		if ($rec = mysqli_query($this->con, $query)) {
@@ -55,14 +57,14 @@ class User {
 			echo "Data not found";
 		}
 	}
-
+	//Display Single data
 	public function singleView() {
 		$query = "SELECT * FROM `user_data` where id='$this->id'";
 		$rec = mysqli_query($this->con, $query);
 		$data = mysqli_fetch_assoc($rec);
 		return $data;
 	}
-
+	//Delete Data
 	public function delete() {
 		$query = "DELETE FROM `user_data` WHERE id='$this->id'";
 		$rec = mysqli_query($this->con, $query);
